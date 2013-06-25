@@ -46,6 +46,21 @@
         </div>
       </div>
     </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">经济适用房</li>
+              <li><a href="{:U('/Index/')}">申请管理</a></li>
+              {% if sss %}
+              <li><a href="{:U('/Audit/')}">审核</a></li>
+              <li><a href="{:U('/Audit/Report')}">上报</a></li>
+              <li><a href="{:U('/Audit/View')}">查看审核进度</a></li>
+              {%endif%}
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
 
 
   {% block body %}{% endblock %}

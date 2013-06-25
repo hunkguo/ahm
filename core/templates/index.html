@@ -14,6 +14,68 @@
         </ul>
       </div>
 
+      
+        <div class="control-group">
+        <span class="control-label">申请人姓名</span>
+        <div class="controls form-inline">
+            <input class="input-xlarge focused" name="ApplicationName" id="ApplicationName" type="text" >
+            <span id="ApplicationName_notice" class="label label-inverse"></span>
+        </div>
+        </div>
+        
+
+
+        <div class="control-group">
+        <span class="control-label">性别</span>
+        <div class="controls form-inline">
+          <select name="SexID">
+            <option value="-1">---请选择性别---</option>
+            <volist name="sex" id="vo">
+              <if condition="$vo[id] eq $SexID">
+              <option value="{$vo.id}" selected>{$vo.Name}</option>
+            <else />
+              <option value="{$vo.id}" >{$vo.Name}</option>
+            </if>
+            </volist>
+          </select>
+        </div>
+        </div>
+
+        
+        <div class="control-group">
+        <span class="control-label">身份证</span>
+        <div class="controls form-inline">
+            <input class="input-xlarge focused" name="IDNumber" id="IDNumber" type="text" >
+            <span id="IDNumber_notice" class="label label-inverse"></span>
+        </div>
+        </div>
+        
+        
+        <div class="control-group">
+        <label class="control-label" for="focusedInput">联系电话</label>
+        <div class="controls">
+          <input class="input-xlarge focused" name="ContactPhone" type="text"  >
+        </div>
+        </div>
+        
+        
+        <div class="control-group">
+        <label class="control-label" for="focusedInput">保障房类型</label>
+        <div class="controls">
+          <select name="CategoryID">
+
+            <option value="-1">---保障房类型---</option>
+            <volist name="category" id="vo">
+              <if condition="$vo[id] eq $CategoryID">
+              <option value="{$vo.id}" selected>{$vo.Name}</option>
+            <else />
+              <option value="{$vo.id}" >{$vo.Name}</option>
+            </if>
+            </volist>
+          </select>
+        </div>
+        </div>
+
         <div class="control-group">
         <label class="control-label" for="focusedInput">办事处</label>
         <div class="controls">
@@ -52,6 +114,144 @@
         </div>
         </div>
 
+                
+        <div class="control-group">
+        <label class="control-label" for="focusedInput">户口所在地</label>
+        <div class="controls">
+
+          <select name="PoliceID">
+
+            <option value="-1">---户口所在地---</option>
+            <volist name="police" id="vo">
+              <if condition="$vo[id] eq $PoliceID">
+              <option value="{$vo.id}" selected>{$vo.Name}</option>
+            <else />
+              <option value="{$vo.id}" >{$vo.Name}</option>
+            </if>
+            </volist>
+          </select>
+        </div>
+        </div>
+        
+        
+        <div class="control-group">
+        <label class="control-label" for="focusedInput">工作单位</label>
+        <div class="controls">
+          <input class="input-xlarge focused" name="Work" type="text" >
+        </div>
+        </div>
+        
+        
+        <div class="control-group">
+        <label class="control-label" for="focusedInput">年收入（元）</label>
+        <div class="controls">
+          <input class="input-xlarge focused" name="IncomeOfYear" type="text"  >
+        </div>
+        </div>
+        
+        
+        <div class="control-group">
+        <label class="control-label" for="focusedInput">申请理由</label>
+        <div class="controls">
+          <select name="ReasonID">
+
+            <option value="-1">---申请理由---</option>
+            <volist name="reason" id="vo">
+              <if condition="$vo[id] eq $ReasonID">
+              <option value="{$vo.id}" selected>{$vo.Name}</option>
+            <else />
+              <option value="{$vo.id}" >{$vo.Name}</option>
+            </if>
+            </volist>
+          </select>
+        </div>
+        </div>
+                
+                
+
+      <script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker.js" charset="UTF-8"></script>
+
+
+        <div class="control-group">
+          <label class="control-label" for="focusedInput">申请日期</label>
+
+        <div class="controls date form_datetime" >
+        <input type="text" class="span3" data-date-format="yyyy-mm-dd" id="ApplicationDate" name="ApplicationDate" value="{$date}">
+        </div>
+        <input type="hidden" id="dtp_input1" value="" /><br/>
+
+        <script type="text/javascript">
+        $('#ApplicationDate').datepicker();
+      </script>
+
+
+
+      <input type="hidden" name="SerialNumber" value="{$SerialNumber}"  >
+                
+      
+
+      <div>
+        <ul class="breadcrumb">
+          <li>
+            现住房情况
+          </li>
+        </ul>
+      </div>
+                
+      <div class="control-group">
+      <label class="control-label" for="focusedInput">座落地址</label>
+      <div class="controls">
+        <input class="input-xlarge focused" name="Address" type="text" >
+      </div>
+      </div>
+
+
+      <div class="control-group">
+      <label class="control-label" for="focusedInput">产权单位（人）</label>
+      <div class="controls">
+        <input class="input-xlarge focused" name="PropertyOwner" type="text" >
+      </div>
+      </div>
+      
+      
+      <div class="control-group">
+      <label class="control-label" for="focusedInput">建筑面积</label>
+      <div class="controls">
+        <input class="input-xlarge focused" name="ConstructionArea" type="text"  >平方米
+      </div>
+      </div>
+      
+      
+      <div class="control-group">
+      <label class="control-label" for="focusedInput">产权性质</label>
+      <div class="controls">
+        <select name="PropertyNatureID">
+
+          <option value="-1">---产权性质---</option>
+          <volist name="nature" id="vo">
+            <if condition="$vo[id] eq $PropertyNatureID">
+            <option value="{$vo.id}" selected>{$vo.Name}</option>
+          <else />
+            <option value="{$vo.id}" >{$vo.Name}</option>
+          </if>
+          </volist>
+        </select>
+
+      </div>
+      </div>
+      
+      
+      
+      <div class="control-group">
+      <label class="control-label" for="focusedInput">备注</label>
+      <div class="controls">
+        <input class="input-xlarge focused" name="Remark" type="text">
+      </div>
+      </div>
+      
+      <input type="hidden" name="ajax" value="1">
+                
+      <div class="alert" id="result" style="display:none;"></div>
                 
         <div class="form-actions">
         <button type="submit" class="btn btn-primary">保存</button>
