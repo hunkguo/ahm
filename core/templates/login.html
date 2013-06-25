@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block body %}
+          <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span3">
+          </div>
+          <div class="span6">
+            <!--输出flash信息-->
+            {% for category, msg in get_flashed_messages(with_categories=true) %}
+              <div class="alert alert-{{ category }}">
+                  <strong>Error!</strong> {{ msg }}
+              </div>
+            {% endfor %}
+            <div class="well">
+                  <form class="form-horizontal" action='{{ url_for('login') }}' method="POST">
+                    {{ form.csrf_token }}
+                    <fieldset>
+                      <div id="legend">
+                        <legend class="">登录</legend>
+                      </div>    
+                      <div class="control-group">
+                        <!-- Username -->
+                        {{ form.username.label(class="control-label" ) }}
+                        <div class="controls">
+                          {{ form.username(size=20,class="span9 input-xlarge") }}
+                        </div>
+                      </div>
+ 
+                      <div class="control-group">
+                        <!-- Password-->
+                        {{ form.password.label(class="control-label" ) }}
+                        <div class="controls">
+                          {{ form.password(size=20,class="span9 input-xlarge") }}
+                        </div>
+                      </div>
+                      <!--输出form验证信息-->
+                      {% for field in form.errors %}
+                          {% for error in form.errors[field] %}
+                              <div class="alert alert-error">
+                                  <strong>Error!</strong> {{error}}
+                              </div>
+                          {% endfor %}
+                      {% endfor %}
+ 
+                      <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                          <button class="btn btn-success">登录</button>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>    
+            </div>
+          </div>
+          <div class="span3">
+          </div>
+        </div>
+        </div>
+
+        <script language="JavaScript">
+         function fleshVerify(){ 
+            //重载验证码
+            var time = new Date().getTime();
+                document.getElementById('verifyImg').src= '__APP__/Public/verify/'+time;
+         }
+         </script>
+{% endblock %}

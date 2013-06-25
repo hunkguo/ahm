@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block body %}
+
+        <div class="span9">
+          <div class="row-fluid">
+
+      <form id="form1" name="form1" class="form-horizontal "  action="__URL__/insert" method="post">
+
+      <div>
+        <ul class="breadcrumb">
+          <li>
+            基本信息
+          </li>
+        </ul>
+      </div>
+
+        <div class="control-group">
+        <label class="control-label" for="focusedInput">办事处</label>
+        <div class="controls">
+          <select name="Banshichu"  onchange="loadShequ(this.value)">
+            <option value="-1">---办事处---</option>
+              {% if Banshichu %}
+                  {% for t in Banshichu %}
+                          <option value="{{ t.ID }}" >{{ t.BanshichuName|safe }}</option>
+
+                  {% endfor %}
+              {% endif %}
+          </select>
+        </div>
+        </div>
+        
+
+        <div class="control-group">
+        <label class="control-label" for="focusedInput">社区</label>
+        <div class="controls">
+          <select name="Shequ" id="Shequ">
+            <option value="-1">---社区---</option>
+              {% if Banshichu %}
+                  {% for t in Banshichu %}
+                    <optgroup label="{{ t.BanshichuName|safe }}">  
+
+                          {%if t.Shequs.all()%}
+                            {% for s in t.Shequs.all()%}
+                              <option value="{{ s.ID }}" >{{ s.ShequName|safe }}</option>
+                            {%endfor%}
+                          {%endif%}
+                          
+
+                  {% endfor %}
+              {% endif %}
+          </select>
+        </div>
+        </div>
+
+                
+        <div class="form-actions">
+        <button type="submit" class="btn btn-primary">保存</button>
+        <button class="btn">取消</button>
+        </div>
+      </form>
+
+
+          </div><!--/row-->
+
+
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+
+
+  <script type="text/javascript">
+  function loadShequ(banshichuId) {
+      $.getJSON( $SCRIPT_ROOT + '/api/shequ', {
+        banshichuId: banshichuId
+      })
+      .done(function( data ) {
+         $('#Shequ').html('<option value="-1">---社区---</option>');
+          $.each(data,function(no,items){
+              $('#Shequ').append('<option value="'+items.ID+'">'+items.ShequName+'</option>');
+          });
+      });
+  }
+  </script>
+{% endblock %}

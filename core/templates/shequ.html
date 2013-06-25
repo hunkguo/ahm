@@ -1,0 +1,14 @@
+
+{% block content %}
+
+<h2>== 社区 ==</h2>
+{% if shequ %}
+    <ol>
+    {% for t in shequ %}
+            <li>{{ t.ShequName|safe }} <sup>:: <a href="/{{ t.ID }}/del" >删除</a> | <a href="/{{ t.ID }}/edit"> 修改</a> | </sup> </li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <b>暂时无记录</b>
+{% endif %}
+{% endblock %}
